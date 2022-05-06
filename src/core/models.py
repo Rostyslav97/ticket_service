@@ -29,6 +29,7 @@ class Ground(models.Model):
     name = models.CharField("Ground", max_length=100, unique=True)
     city = models.ForeignKey(City, on_delete=models.CASCADE)
     adress = models.CharField("Adress", max_length=100)
+    capacity = models.PositiveIntegerField("Capacity")
 
     def __str__(self):
         return self.name
