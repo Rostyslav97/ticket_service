@@ -2,7 +2,7 @@ from rest_framework import serializers
 from core.models import Event, Cart
 
 
-class ListRetrieveDestroyEventSerializer(serializers.ModelSerializer):
+class EventSerializer(serializers.ModelSerializer):
     category = serializers.SlugRelatedField(slug_field="name", read_only=True)
     ground = serializers.SlugRelatedField(slug_field="name", read_only=True)
     currency = serializers.SlugRelatedField(slug_field="name", read_only=True)
@@ -16,6 +16,14 @@ class CreateEventSerializer(serializers.ModelSerializer):
         model = Event
         exclude = ("id", )
 
+
+
+
+class CartSerializer(serializers.ModelSerializer):
+    event = EventSerializer(read_only=True, many=True)
+    class Meta:
+        model = Cart
+        exclude = ("id", )
 
 
 class CreateCartSerializer(serializers.ModelSerializer):
