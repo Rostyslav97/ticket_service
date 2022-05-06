@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from core.models import Event
+from core.models import Event, Cart
 
 
 class ListRetrieveDestroyEventSerializer(serializers.ModelSerializer):
@@ -14,4 +14,11 @@ class ListRetrieveDestroyEventSerializer(serializers.ModelSerializer):
 class CreateEventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
+        exclude = ("id", )
+
+
+
+class CreateCartSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cart
         exclude = ("id", )
