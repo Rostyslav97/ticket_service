@@ -1,10 +1,19 @@
 from rest_framework import serializers
-from core.models import Category, Event, Cart
+from core.models import Category, Country, Event, Cart
 
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
+        exclude = ("id", )
+
+
+
+
+
+class CountrySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Country
         exclude = ("id", )
 
 
