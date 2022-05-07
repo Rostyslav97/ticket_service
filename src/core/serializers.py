@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from core.models import Category, Country, City, Event, Cart
+from core.models import Category, Country, City, Ground, Event, Cart
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -29,9 +29,25 @@ class CitySerializer(serializers.ModelSerializer):
 
 
 
+class GroundSerializer(serializers.ModelSerializer):
+    city = serializers.SlugRelatedField(slug_field="name", read_only=True)
+    class Meta:
+        model = Ground
+        exclude = ("id", )
+
+
+class GroundCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Ground
+        exclude = ("id", )
+
+
+
+
+
 class EventSerializer(serializers.ModelSerializer):
     category = serializers.SlugRelatedField(slug_field="name", read_only=True)
-    ground = serializers.SlugRelatedField(slug_field="name", read_only=True)
+    ground = GroundSerializer(read_only=True)
     currency = serializers.SlugRelatedField(slug_field="name", read_only=True)
     class Meta:
         model = Event
