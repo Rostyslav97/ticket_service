@@ -1,5 +1,5 @@
-from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView, DestroyAPIView
-from core.models import Category, Event, Cart
+from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
+from core.models import Category, Country, Event, Cart
 from core.serializers import EventSerializer, CreateEventSerializer, CartSerializer, CreateCartSerializer, CategorySerializer
 
 
@@ -19,10 +19,17 @@ class CreateCategoryAPI(CreateAPIView):
     serializer_class = CategorySerializer
 
 
+class UpdateCategoryAPI(UpdateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    lookup_field = "id"
+
+
 class DestroyCategoryAPI(DestroyAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     lookup_field = "id"
+
 
 
 
@@ -42,6 +49,12 @@ class RetrieveEventAPI(RetrieveAPIView):
 class CreateEventAPI(CreateAPIView):
     queryset = Event.objects.all()
     serializer_class = CreateEventSerializer
+
+
+class UpdateEventAPI(UpdateAPIView):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+    lookup_field = "id"
 
 
 class DestroyEventAPI(DestroyAPIView):

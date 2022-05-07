@@ -1,16 +1,18 @@
 from django.urls import path
-from core.views import ListCategoryAPI, RetrieveCategoryAPI, CreateCategoryAPI, DestroyCategoryAPI, ListEventAPI, RetrieveEventAPI, CreateEventAPI, DestroyEventAPI, ListCartAPI, RetrieveCartAPI, CreateCartAPI, DestroyCartAPI
+from core.views import ListCategoryAPI, RetrieveCategoryAPI, CreateCategoryAPI, UpdateCategoryAPI, DestroyCategoryAPI, ListEventAPI, RetrieveEventAPI, CreateEventAPI, UpdateEventAPI, DestroyEventAPI, ListCartAPI, RetrieveCartAPI, CreateCartAPI, DestroyCartAPI
 
 
 urlpatterns = [
     path('category/', ListCategoryAPI.as_view()),
     path('category/<int:id>/', RetrieveCategoryAPI.as_view()),
     path('category/create/', CreateCategoryAPI.as_view()),
-    path('category/destroy', DestroyCategoryAPI.as_view()),
+    path('category/update/<int:id>/', UpdateCategoryAPI.as_view()),
+    path('category/destroy/<int:id>/', DestroyCategoryAPI.as_view()),
 
     path('events/', ListEventAPI.as_view()),
     path('events/<int:id>/', RetrieveEventAPI.as_view()),
     path('events/create/', CreateEventAPI.as_view()),
+    path('events/update/<int:id>/', UpdateEventAPI.as_view()),
     path('events/destroy/<int:id>/', DestroyEventAPI.as_view()),
     
     path('cart/', ListCartAPI.as_view()),
