@@ -1,6 +1,6 @@
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView, RetrieveDestroyAPIView
-from core.models import Category, Country, City, Ground, Event, Cart
-from core.serializers import EventSerializer, CountrySerializer, CitySerializer, GroundSerializer, GroundCreateSerializer, CreateEventSerializer, CartSerializer, CreateCartSerializer, CategorySerializer
+from core.models import Category, Country, City, Ground, Currency, Event, Cart
+from core.serializers import CategorySerializer, CountrySerializer, CitySerializer, GroundSerializer, GroundCreateSerializer, CurrencySerializer, EventSerializer, EventCreateSerializer, CartSerializer, CartCreateSerializer
 
 
 class ListCategoryAPI(ListAPIView):
@@ -79,6 +79,21 @@ class RetrieveDestroyGroundAPI(RetrieveDestroyAPIView):
 
 
 
+class CreateCurrencyAPI(CreateAPIView):
+    queryset = Currency.objects.all()
+    serializer_class = CurrencySerializer
+    lookup_field = "id"
+
+
+class DestroyCurrencyAPI(DestroyAPIView):
+    queryset = Currency.objects.all()
+    serializer_class = CurrencySerializer
+    lookup_field = "id"
+
+
+
+
+
 class ListEventAPI(ListAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
@@ -92,7 +107,7 @@ class RetrieveEventAPI(RetrieveAPIView):
 
 class CreateEventAPI(CreateAPIView):
     queryset = Event.objects.all()
-    serializer_class = CreateEventSerializer
+    serializer_class = EventCreateSerializer
 
 
 class UpdateEventAPI(UpdateAPIView):
@@ -123,7 +138,7 @@ class RetrieveCartAPI(RetrieveAPIView):
 
 class CreateCartAPI(CreateAPIView):
     queryset = Cart.objects.all()
-    serializer_class = CreateCartSerializer
+    serializer_class = CartCreateSerializer
 
 
 class DestroyCartAPI(DestroyAPIView):
