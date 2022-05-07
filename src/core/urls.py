@@ -1,5 +1,5 @@
 from django.urls import path
-from core.views import ListCategoryAPI, RetrieveCategoryAPI, CreateCategoryAPI, UpdateCategoryAPI, DestroyCategoryAPI, CreateCountryAPI, DestroyCountryAPI, ListEventAPI, RetrieveEventAPI, CreateEventAPI, UpdateEventAPI, DestroyEventAPI, ListCartAPI, RetrieveCartAPI, CreateCartAPI, DestroyCartAPI
+from core.views import ListCategoryAPI, RetrieveCategoryAPI, CreateCategoryAPI, UpdateCategoryAPI, DestroyCategoryAPI, CreateCountryAPI, DestroyCountryAPI, CreateCityAPI, DestroyCityAPI, ListEventAPI, RetrieveEventAPI, CreateEventAPI, UpdateEventAPI, DestroyEventAPI, ListCartAPI, RetrieveCartAPI, CreateCartAPI, DestroyCartAPI
 
 
 urlpatterns = [
@@ -8,6 +8,12 @@ urlpatterns = [
     path('category/create/', CreateCategoryAPI.as_view()),
     path('category/update/<int:id>/', UpdateCategoryAPI.as_view()),
     path('category/destroy/<int:id>/', DestroyCategoryAPI.as_view()),
+
+    path('country/create/', CreateCountryAPI.as_view()),
+    path('country/destroy/<int:id>/', DestroyCountryAPI.as_view()),
+
+    path('city/create/', CreateCityAPI.as_view()),
+    path('city/destroy/<int:id>/', DestroyCityAPI.as_view()),
 
     path('events/', ListEventAPI.as_view()),
     path('events/<int:id>/', RetrieveEventAPI.as_view()),
@@ -19,7 +25,4 @@ urlpatterns = [
     path('cart/<int:id>/', RetrieveCartAPI.as_view()),
     path('cart/create/', CreateCartAPI.as_view()),
     path('cart/destroy/<int:id>/', DestroyCartAPI.as_view()),
-
-    path('country/create/', CreateCountryAPI.as_view()),
-    path('country/destroy/<int:id>/', DestroyCountryAPI.as_view()),
 ]
