@@ -1,5 +1,14 @@
 from rest_framework import serializers
-from core.models import Event, Cart
+from core.models import Category, Event, Cart
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        exclude = ("id", )
+
+
+
 
 
 class EventSerializer(serializers.ModelSerializer):
@@ -15,6 +24,7 @@ class CreateEventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         exclude = ("id", )
+
 
 
 
