@@ -80,6 +80,7 @@ class CartSerializer(serializers.ModelSerializer):
 
 
 class CartCreateSerializer(serializers.ModelSerializer):
+    customer = serializers.HiddenField(default=serializers.CurrentUserDefault())
     class Meta:
         model = Cart
         exclude = ("id", )
