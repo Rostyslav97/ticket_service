@@ -56,7 +56,7 @@ class Event(models.Model):
 
 
 class Cart(models.Model):
-    customer = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=False, on_delete=models.SET_NULL, verbose_name="name")
+    customer = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=False, on_delete=models.SET_NULL)
     event = models.ManyToManyField(Event)
     amount = models.IntegerField()
     order_date_time = models.DateTimeField(auto_now_add=True)
