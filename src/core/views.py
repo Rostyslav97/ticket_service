@@ -151,7 +151,7 @@ class RetrieveCartAPI(RetrieveAPIView):
     queryset = Cart.objects.all()
     serializer_class = CartSerializer
     lookup_field = "id"
-    permission_classes = (IsOwner, )
+    permission_classes = (IsOwner | IsAdminUser, ) 
 
 
 class CreateCartAPI(CreateAPIView):
