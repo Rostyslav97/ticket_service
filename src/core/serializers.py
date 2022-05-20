@@ -109,7 +109,8 @@ class OrderCreateSerializer(serializers.ModelSerializer):
 
 
 class BasketSerializer(serializers.ModelSerializer):
-    event = EventSerializer(read_only=True, many=True)
+    event = EventSerializer(read_only=True)
+    order = OrderSerializer(read_only=True)
     class Meta:
         model = Basket
         fields = "__all__"

@@ -151,7 +151,7 @@ class RetrieveOrderAPI(RetrieveAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
     lookup_field = "id"
-    permission_classes = (IsAdminUser, ) 
+    permission_classes = (IsOwner|IsAdminUser, ) 
 
 
 class CreateOrderAPI(CreateAPIView):
@@ -173,6 +173,7 @@ class DestroyOrderAPI(DestroyAPIView):
 class RetrieveBasketAPI(RetrieveAPIView):
     queryset = Basket.objects.all()
     serializer_class = BasketSerializer
+    lookup_field = "id"
     permission_classes = (IsAdminUser, )
 
 
