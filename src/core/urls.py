@@ -1,5 +1,5 @@
 from django.urls import path
-from core.views import ListCategoryAPI, RetrieveCategoryAPI, CreateCategoryAPI, UpdateCategoryAPI, DestroyCategoryAPI, CreateCountryAPI, DestroyCountryAPI, CreateCityAPI, DestroyCityAPI, CreateGroundAPI, RetrieveDestroyGroundAPI, CreateCurrencyAPI, DestroyCurrencyAPI, ListEventAPI, RetrieveEventAPI, CreateEventAPI, UpdateEventAPI, DestroyEventAPI, ListCartAPI, RetrieveCartAPI, CreateCartAPI, DestroyCartAPI
+from core.views import ListCategoryAPI, RetrieveCategoryAPI, CreateCategoryAPI, UpdateCategoryAPI, DestroyCategoryAPI, CreateCountryAPI, DestroyCountryAPI, CreateCityAPI, DestroyCityAPI, CreateGroundAPI, RetrieveDestroyGroundAPI, CreateCurrencyAPI, DestroyCurrencyAPI, ListEventAPI, RetrieveEventAPI, CreateEventAPI, UpdateEventAPI, DestroyEventAPI, ListOrderAPI, RetrieveOrderAPI, CreateOrderAPI, DestroyOrderAPI, RetrieveBasketAPI, CreateBasketAPI
 
 
 urlpatterns = [
@@ -28,8 +28,11 @@ urlpatterns = [
     path('events/update/<int:id>/', UpdateEventAPI.as_view()),
     path('events/destroy/<int:id>/', DestroyEventAPI.as_view()),
     
-    path('cart/', ListCartAPI.as_view()),
-    path('cart/<int:id>/', RetrieveCartAPI.as_view()),
-    path('cart/create/', CreateCartAPI.as_view()),
-    path('cart/destroy/<int:id>/', DestroyCartAPI.as_view()),
+    path('order/', ListOrderAPI.as_view()),
+    path('order/<int:id>/', RetrieveOrderAPI.as_view()),
+    path('order/create/', CreateOrderAPI.as_view()),
+    path('order/destroy/<int:id>/', DestroyOrderAPI.as_view()),
+
+    path('basket/<int:id>/', RetrieveBasketAPI.as_view()),
+    path('basket/create/', CreateBasketAPI.as_view())
 ]

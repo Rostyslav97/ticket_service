@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from core.models import Category, Country, City, Ground, Currency, Event, Cart
+from core.models import Category, Country, City, Ground, Currency, Event, Order, Basket
 from django.contrib.auth import get_user_model
 
 
@@ -92,18 +92,31 @@ class CustomerSerializer(serializers.ModelSerializer):
 
 
 
-
-class CartSerializer(serializers.ModelSerializer):
-    event = EventSerializer(read_only=True, many=True)
+class OrderSerializer(serializers.ModelSerializer):
     customer = CustomerSerializer(read_only=True)
     class Meta:
-        model = Cart
+        model = Order
+        fields = "__all__"
+
+
+class OrderCreateSerializer(serializers.ModelSerializer):
+    customer = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    class Meta:
+        model = Order
         fields = "__all__"
 
 
 
-class CartCreateSerializer(serializers.ModelSerializer):
-    customer = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
+class BasketSerializer(serializers.ModelSerializer):
+    event = EventSerializer(read_only=True, many=True)
     class Meta:
-        model = Cart
+        model = Basket
+        fields = "__all__"
+
+
+
+class BasketCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Basket
         fields = "__all__"

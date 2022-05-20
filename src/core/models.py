@@ -55,8 +55,18 @@ class Event(models.Model):
         return self.name
 
 
-class Cart(models.Model):
-    customer = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=False, on_delete=models.SET_NULL)
-    event = models.ManyToManyField(Event)
-    amount = models.IntegerField()
+class Order(models.Model):
+    customer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
+
+    def __str__(self):
+        return self.customer
+
+
+class Basket(models.Model):
+    event = models.ForeignKey("Event", on_delete=models.CASCADE)
+    order = models.ForeignKey("Order", on_delete=models.CASCADE)
+    amount = models.IntegerField(null=False, blank=False)
     order_date_time = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.event

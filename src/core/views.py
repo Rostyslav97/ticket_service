@@ -1,6 +1,6 @@
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView, RetrieveDestroyAPIView
-from core.models import Category, Country, City, Ground, Currency, Event, Cart
-from core.serializers import CategorySerializer, CountrySerializer, CitySerializer, GroundSerializer, GroundCreateSerializer, CurrencySerializer, EventSerializer, EventCreateSerializer, CartSerializer, CartCreateSerializer
+from core.models import Category, Country, City, Ground, Currency, Event, Order, Basket
+from core.serializers import CategorySerializer, CountrySerializer, CitySerializer, GroundSerializer, GroundCreateSerializer, CurrencySerializer, EventSerializer, EventCreateSerializer, OrderSerializer, OrderCreateSerializer, BasketSerializer, BasketCreateSerializer
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from core.permissions import IsOwner
 
@@ -141,27 +141,42 @@ class DestroyEventAPI(DestroyAPIView):
 
 
 
-class ListCartAPI(ListAPIView):
-    queryset = Cart.objects.all()
-    serializer_class = CartSerializer
+class ListOrderAPI(ListAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
     permission_classes = (IsAdminUser, )
 
 
-class RetrieveCartAPI(RetrieveAPIView):
-    queryset = Cart.objects.all()
-    serializer_class = CartSerializer
+class RetrieveOrderAPI(RetrieveAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
     lookup_field = "id"
-    permission_classes = (IsOwner | IsAdminUser, ) 
+    permission_classes = (IsAdminUser, ) 
 
 
-class CreateCartAPI(CreateAPIView):
-    queryset = Cart.objects.all()
-    serializer_class = CartCreateSerializer
+class CreateOrderAPI(CreateAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderCreateSerializer
     permission_classes = (IsAuthenticated, )
 
 
-class DestroyCartAPI(DestroyAPIView):
-    queryset = Cart.objects.all()
-    serializer_class = CartSerializer
+class DestroyOrderAPI(DestroyAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
     lookup_field = "id"
     permission_classes = (IsAdminUser, )
+
+
+
+
+
+class RetrieveBasketAPI(RetrieveAPIView):
+    queryset = Basket.objects.all()
+    serializer_class = BasketSerializer
+    permission_classes = (IsAdminUser, )
+
+
+class CreateBasketAPI(CreateAPIView):
+    queryset = Basket.objects.all()
+    serializer_class = BasketCreateSerializer
+    permission_classes = (IsAuthenticated, )
