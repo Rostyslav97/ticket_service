@@ -12,16 +12,10 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-
-
-
 class CountrySerializer(serializers.ModelSerializer):
     class Meta:
         model = Country
         fields = "__all__"
-
-
-
 
 
 class CitySerializer(serializers.ModelSerializer):
@@ -30,11 +24,9 @@ class CitySerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-
-
-
 class GroundSerializer(serializers.ModelSerializer):
     city = serializers.SlugRelatedField(slug_field="name", read_only=True)
+
     class Meta:
         model = Ground
         fields = "__all__"
@@ -46,22 +38,17 @@ class GroundCreateSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-
-
-
 class CurrencySerializer(serializers.ModelSerializer):
     class Meta:
         model = Currency
         fields = "__all__"
 
 
-
-
-
 class EventSerializer(serializers.ModelSerializer):
     category = serializers.SlugRelatedField(slug_field="name", read_only=True)
     ground = GroundSerializer(read_only=True)
     currency = serializers.SlugRelatedField(slug_field="name", read_only=True)
+
     class Meta:
         model = Event
         fields = "__all__"
@@ -71,8 +58,6 @@ class EventCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = "__all__"
-
-
 
 
 class CustomerSerializer(serializers.ModelSerializer):
@@ -86,14 +71,13 @@ class CustomerSerializer(serializers.ModelSerializer):
             "is_active",
             "groups",
             "user_permissions",
-            "date_joined"
+            "date_joined",
         )
-
-
 
 
 class OrderSerializer(serializers.ModelSerializer):
     customer = CustomerSerializer(read_only=True)
+
     class Meta:
         model = Order
         fields = "__all__"
@@ -101,20 +85,19 @@ class OrderSerializer(serializers.ModelSerializer):
 
 class OrderCreateSerializer(serializers.ModelSerializer):
     customer = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
     class Meta:
         model = Order
         fields = "__all__"
 
 
-
-
 class BasketSerializer(serializers.ModelSerializer):
     event = EventSerializer(read_only=True)
     order = OrderSerializer(read_only=True)
+
     class Meta:
         model = Basket
         fields = "__all__"
-
 
 
 class BasketCreateSerializer(serializers.ModelSerializer):
