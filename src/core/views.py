@@ -2,7 +2,7 @@ from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView,
 from core.models import Category, Country, City, Ground, Currency, Event, Order, Basket
 from core.serializers import CategorySerializer, CountrySerializer, CitySerializer, GroundSerializer, GroundCreateSerializer, CurrencySerializer, EventSerializer, EventCreateSerializer, OrderSerializer, OrderCreateSerializer, BasketSerializer, BasketCreateSerializer
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
-from core.permissions import IsOwner
+from core.permissions import IsAdminorOwner
 
 
 class ListCategoryAPI(ListAPIView):
@@ -151,7 +151,7 @@ class RetrieveOrderAPI(RetrieveAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
     lookup_field = "id"
-    permission_classes = (IsOwner|IsAdminUser, ) 
+    permission_classes = [IsAdminorOwner] 
 
 
 class CreateOrderAPI(CreateAPIView):

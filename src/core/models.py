@@ -59,7 +59,7 @@ class Order(models.Model):
     customer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
 
     def __str__(self):
-        return self.customer
+        return str(self.customer)
 
 
 class Basket(models.Model):
@@ -69,4 +69,4 @@ class Basket(models.Model):
     order_date_time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.event
+        return str(self.event)
